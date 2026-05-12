@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — AI & IT Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f2a4a;
+    --navy-mid: #1a3d6b;
+    --blue: #2563a8;
+    --accent: #e8a020;
+    --light: #f7f5f0;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --muted: #5a6475;
+    --border: #dde3ec;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 3rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(37,99,168,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(232,160,32,0.06) 0%, transparent 60%);
+  }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(15,42,74,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,42,74,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content { position: relative; z-index: 1; padding-top: 5rem; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--blue);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  h1 em { font-style: italic; color: var(--blue); }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: var(--muted);
+    margin: 1.2rem 0 2.5rem;
+    max-width: 440px;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--navy); color: var(--white); }
+
+  /* Credential pills */
+  .hero-creds {
+    margin-top: 3rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .cred {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.3rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+    background: var(--white);
+  }
+  .cred.hot {
+    background: var(--navy); color: var(--white); border-color: var(--navy);
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative; z-index: 1;
+    padding-top: 5rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transform: translateX(0);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-card:hover { transform: translateX(-4px); box-shadow: 4px 0 20px rgba(0,0,0,0.06); }
+  .stat-card:nth-child(2) { margin-left: 2rem; }
+  .stat-card:nth-child(3) { margin-left: 1rem; }
+
+  .stat-icon {
+    width: 44px; height: 44px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .stat-icon.blue { background: rgba(37,99,168,0.1); }
+  .stat-icon.amber { background: rgba(232,160,32,0.12); }
+  .stat-icon.navy { background: rgba(15,42,74,0.08); }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; color: var(--navy); line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-tag {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-tag::before { content: ''; width: 20px; height: 1px; background: var(--blue); }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--navy); line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-text p {
+    color: var(--muted); margin-bottom: 1.2rem; font-size: 0.95rem; line-height: 1.9;
+  }
+  .about-highlight {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .skill-item {
+    background: var(--light);
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .skill-name { font-weight: 500; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+  .skill-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--accent)); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--light); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 2rem; padding: 0 0 3rem 0;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute;
+    left: -5px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--blue);
+  }
+  .timeline-item.featured::before { background: var(--accent); border-color: var(--accent); }
+
+  .timeline-meta {
+    padding-left: 1.5rem;
+    padding-top: 2px;
+  }
+  .timeline-date { font-size: 0.78rem; color: var(--blue); font-weight: 500; }
+  .timeline-co { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+  .timeline-content {}
+  .timeline-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-desc {
+    font-size: 0.88rem; color: var(--muted); line-height: 1.8;
+  }
+  .timeline-tag {
+    display: inline-block; margin-top: 0.6rem; margin-right: 0.4rem;
+    font-size: 0.72rem; font-weight: 500;
+    padding: 2px 10px;
+    background: rgba(37,99,168,0.08);
+    color: var(--blue);
+    border-radius: 20px;
+  }
+  .timeline-tag.amber {
+    background: rgba(232,160,32,0.1); color: #a06010;
+  }
+
+  /* ── EDUCATION / CERTS ── */
+  #education { background: var(--navy); }
+  #education .section-tag { color: var(--accent); }
+  #education .section-tag::before { background: var(--accent); }
+  #education h2 { color: var(--white); }
+
+  .edu-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;
+  }
+  .edu-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 1.8rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .edu-card:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.25);
+  }
+  .edu-card.featured {
+    border-color: var(--accent);
+    background: rgba(232,160,32,0.07);
+  }
+  .edu-badge {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px; margin-bottom: 1rem;
+  }
+  .edu-badge.gold { background: var(--accent); color: var(--navy); }
+  .edu-badge.blue { background: rgba(37,99,168,0.3); color: #90b8e8; }
+  .edu-badge.green { background: rgba(34,139,34,0.25); color: #7ec87e; }
+  .edu-badge.progress { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+
+  .edu-school { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--white); margin-bottom: 0.3rem; }
+  .edu-deg { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .edu-gpa {
+    margin-top: 0.8rem;
+    font-size: 0.8rem; font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--white); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.8rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    background: var(--white);
+  }
+  .project-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .project-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(37,99,168,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 1rem;
+  }
+  .project-title { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 1rem; font-size: 0.8rem; font-weight: 500;
+    color: var(--blue); text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 8px; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--light); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-intro p { font-size: 0.95rem; color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
+  .contact-items { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1rem 1.2rem;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .contact-item:hover { border-color: var(--blue); transform: translateX(4px); }
+  .contact-item-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+  .contact-item-text { font-size: 0.85rem; }
+  .contact-item-label { font-weight: 500; color: var(--navy); }
+  .contact-item-sub { color: var(--muted); font-size: 0.78rem; }
+
+  .lang-section { margin-top: 2rem; }
+  .lang-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+  .lang-name { font-weight: 500; font-size: 0.85rem; width: 80px; color: var(--navy); }
+  .lang-dots { display: flex; gap: 5px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.filled { background: var(--navy); }
+  .dot.empty { background: var(--border); }
+  .lang-level { font-size: 0.78rem; color: var(--muted); margin-left: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.5);
+    text-align: center; padding: 2rem 3rem;
+    font-size: 0.8rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.7s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+  .stat-card { animation: fadeUp 0.6s ease both; }
+  .stat-card:nth-child(1) { animation-delay: 0.3s; }
+  .stat-card:nth-child(2) { animation-delay: 0.45s; }
+  .stat-card:nth-child(3) { animation-delay: 0.6s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 3rem 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .timeline-meta { padding-left: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">YN</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">AI &amp; IT Professional</div>
+    <h1>Your <em>Name</em><br>Here</h1>
+    <p class="hero-subtitle">
+      Bilingual AI evaluator, IT professional, and Strayer University honors student with 35+ years of leadership experience. Bridging real-world expertise with emerging AI skills.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="Resume_Modern_OnePage.docx" class="btn-outline" download>Download Resume</a>
+    </div>
+    <div class="hero-creds">
+      <span class="cred hot">4.0 GPA</span>
+      <span class="cred hot">President's List</span>
+      <span class="cred">CompTIA Linux+</span>
+      <span class="cred">Bilingual EN/ES</span>
+      <span class="cred">AI Concentration</span>
+      <span class="cred">IT Security Certified</span>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="stat-card">
+      <div class="stat-icon blue">🎓</div>
+      <div>
+        <div class="stat-num">4.0</div>
+        <div class="stat-label">GPA · President's List · Strayer University</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon amber">⚡</div>
+      <div>
+        <div class="stat-num">35+</div>
+        <div class="stat-label">Years of professional leadership experience</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon navy">🤖</div>
+      <div>
+        <div class="stat-num">AI</div>
+        <div class="stat-label">Product evaluator · Intuit / TurboTax · Active</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag">About</div>
+        <h2>Experience meets<br>emerging technology</h2>
+        <p>
+          I bring something most AI candidates don't — decades of real-world experience managing teams, healthcare operations, customer support, and complex logistics, combined with an active BS in Information Technology with an AI concentration and a 4.0 GPA.
+        </p>
+        <p>
+          Currently evaluating and refining AI product logic at Intuit/TurboTax, I understand both the human and the technical side of AI systems. My bilingual fluency in English and Spanish gives me a unique edge in linguistic accuracy and diverse user experience evaluation.
+        </p>
+        <div class="about-highlight">
+          "35 years of leadership, one clear direction — AI."
+        </div>
+      </div>
+      <div>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-name">AI Evaluation</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Prompt Engineering</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Linux / IT Security</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Help Desk Support</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Python (Learning)</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Operations Mgmt</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-tag">Experience</div>
+    <h2>35+ years of<br>professional leadership</h2>
+    <div class="timeline">
+
+      <div class="timeline-item featured">
+        <div class="timeline-meta">
+          <div class="timeline-date">Apr 2026 – Present</div>
+          <div class="timeline-co">Intuit / Working Solutions</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-title">TurboTax Product Expert &amp; AI Evaluator</div>
+          <div class="timeline-desc">
+            Evaluating and refining AI product logic to improve automated system responses. Providing expert bilingual (EN/ES) remote technical support via live chat and phone. Diagnosing complex software and account issues for tax preparation workflows.
+          </div>
+          <span class="timeline-tag">AI Evaluation</span>
+          <span class="timeline-tag">Remote Support</span>
+          <span class="timeline-tag amber">Bilingual</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-date">2024 – Present</div>
+          <div class="timeline-co">Raleigh, NC</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-title">Bar Manager</div>
+          <div class="timeline-desc">
+            Managing operations across The Raleigh Beer Garden and 101 Kitchen. Overseeing inventory, staff training, financial reporting, and compliance across high-volume venues.
+          </div>
+          <span class="timeline-tag">Operations</span>
+          <span class="timeline-tag">Team Leadership</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-date">2020 – 2022</div>
+          <div class="timeline-co">White Oak Pediatrics, Raleigh NC</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-title">Administrative Assistant</div>
+          <div class="timeline-desc">
+            HIPAA-compliant patient records, scheduling, insurance verification, and bilingual patient communication in a busy pediatric practice.
+          </div>
+          <span class="timeline-tag">HIPAA</span>
+          <span class="timeline-tag">Healthcare Admin</span>
+          <span class="timeline-tag amber">Bilingual</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-date">2005 – 2009</div>
+          <div class="timeline-co">VitalDent NY &amp; Sunshine Pediatrics NC</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-title">Office Manager &amp; Administrative Assistant</div>
+          <div class="timeline-desc">
+            Patient relations, inventory management, computer systems oversight, and office operations across dental and pediatric healthcare settings.
+          </div>
+          <span class="timeline-tag">Office Management</span>
+          <span class="timeline-tag">Healthcare</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-tag">Education &amp; Credentials</div>
+    <h2>Built to learn.<br>Certified to deliver.</h2>
+    <div class="edu-grid">
+
+      <div class="edu-card featured">
+        <span class="edu-badge gold">4.0 GPA · President's List</span>
+        <div class="edu-school">Strayer University</div>
+        <div class="edu-deg">BS Information Technology<br>AI Concentration<br>Expected Spring 2030</div>
+        <div class="edu-gpa">Focus: AI · Network Security · Logic Programming</div>
+      </div>
+
+      <div class="edu-card">
+        <span class="edu-badge blue">Certified</span>
+        <div class="edu-school">CompTIA Linux+</div>
+        <div class="edu-deg">Industry-recognized Linux certification demonstrating command-line proficiency and system administration fundamentals.</div>
+      </div>
+
+      <div class="edu-card">
+        <span class="edu-badge blue">Certified</span>
+        <div class="edu-school">MyComputerCareer.com</div>
+        <div class="edu-deg">IT Security Administration<br>2019 – 2020</div>
+      </div>
+
+      <div class="edu-card">
+        <span class="edu-badge progress">In Progress</span>
+        <div class="edu-school">Python · Kaggle Learn</div>
+        <div class="edu-deg">Self-directed Python fundamentals for AI and data science applications.</div>
+      </div>
+
+      <div class="edu-card">
+        <span class="edu-badge progress">Planned</span>
+        <div class="edu-school">AWS Cloud Practitioner</div>
+        <div class="edu-deg">Amazon Web Services foundational cloud certification — target 2027.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">Projects</div>
+    <h2>Building in public.</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">📓</div>
+        <div class="project-title">AI Learning Journal</div>
+        <div class="project-desc">
+          Public GitHub repository documenting my self-directed study in Python, machine learning, and AI concepts. Updated regularly as I progress through Kaggle Learn and other resources.
+        </div>
+        <a href="https://github.com/yourusername/ai-learning-journal" class="project-link" target="_blank">
+          View on GitHub →
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🦠</div>
+        <div class="project-title">COVID-19 CDC Data Entry</div>
+        <div class="project-desc">
+          Managed high-volume public health data entry into CDC tracking systems during the pandemic response — demonstrating accuracy, urgency handling, and data integrity under pressure.
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🚢</div>
+        <div class="project-title">International Shipping Logistics</div>
+        <div class="project-desc">
+          Coordinated cross-border supply chain operations, managing documentation, compliance, and communication across international shipping workflows.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <div class="section-tag">Contact</div>
+        <h2>Let's connect.</h2>
+        <p>
+          I'm actively seeking IT Help Desk, AI Training/Evaluation, and Technical Support roles in the Research Triangle area or remote. Open to internships, part-time, and full-time opportunities.
+        </p>
+        <p>
+          Bilingual in English and Spanish — happy to connect in either language.
+        </p>
+        <div class="lang-section">
+          <div class="lang-row">
+            <span class="lang-name">English</span>
+            <div class="lang-dots">
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            </div>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-row">
+            <span class="lang-name">Spanish</span>
+            <div class="lang-dots">
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+            </div>
+            <span class="lang-level">Bilingual</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-items">
+        <a href="mailto:youremail@email.com" class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-sub">youremail@email.com</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/yourname" class="contact-item" target="_blank">
+          <div class="contact-item-icon">💼</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-sub">linkedin.com/in/yourname</div>
+          </div>
+        </a>
+        <a href="https://github.com/yourusername" class="contact-item" target="_blank">
+          <div class="contact-item-icon">💻</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-sub">github.com/yourusername</div>
+          </div>
+        </a>
+        <a href="Resume_Modern_OnePage.docx" class="contact-item" download>
+          <div class="contact-item-icon">📄</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Resume</div>
+            <div class="contact-item-sub">Download Word document</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built with purpose · Wendell, NC · <a href="mailto:youremail@email.com">youremail@email.com</a></p>
+</footer>
+
+</body>
+</html>
